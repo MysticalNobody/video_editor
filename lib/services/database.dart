@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:meta/meta.dart';
-import 'package:hack_mobile/models/config.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:sembast/sembast.dart';
@@ -15,8 +14,9 @@ class DataBase {
   static Database db;
   open() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    var codec = getEncryptSembastCodec(password: 'm1y2S3u4p5e6r7G8o9o0d1P2a3s4s5w6o7r8d');
-    String dbPath = context.join(documentsDirectory.path, Config.dbName + ".db");
+    var codec = getEncryptSembastCodec(
+        password: 'm1y2S3u4p5e6r7G8o9o0d1P2a3s4s5w6o7r8d');
+    String dbPath = context.join(documentsDirectory.path, "videos.db");
     db = await databaseFactoryIo.openDatabase(dbPath, codec: codec);
   }
 }
@@ -28,7 +28,9 @@ class _EncryptEncoder extends Converter<Map<String, dynamic>, String> {
 
   @override
   String convert(Map<String, dynamic> input) {
-    String encoded = Encrypter(salsa20).encrypt(json.encode(input), iv: IV.fromLength(8)).base64;
+    String encoded = Encrypter(salsa20)
+        .encrypt(json.encode(input), iv: IV.fromLength(8))
+        .base64;
     return encoded;
   }
 }
@@ -40,7 +42,8 @@ class _EncryptDecoder extends Converter<String, Map<String, dynamic>> {
 
   @override
   Map<String, dynamic> convert(String input) {
-    var decoded = json.decode(Encrypter(salsa20).decrypt64(input, iv: IV.fromLength(8)));
+    var decoded =
+        json.decode(Encrypter(salsa20).decrypt64(input, iv: IV.fromLength(8)));
     if (decoded is Map) {
       return decoded.cast<String, dynamic>();
     }
@@ -68,4 +71,6 @@ class _EncryptCodec extends Codec<Map<String, dynamic>, String> {
 const _encryptCodecSignature = 'encrypt';
 
 SembastCodec getEncryptSembastCodec({@required String password}) =>
-    SembastCodec(signature: _encryptCodecSignature, codec: _EncryptCodec(sha256.convert(utf8.encode(password)).bytes));
+    SembastCodec(
+        signature: _encryptCodecSignature,
+        codec: _EncryptCodec(sha256.convert(utf8.encode(password)).bytes));
