@@ -1,16 +1,7 @@
-# hack_mobile
+# Тестовое задание
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Целью тестового задания было сделать приложение на Flutter, которое выполняет следующие функции:
+1) снять видео  на камеру
+2) экран со списоком снятых видео. На видео должен быть тайминг когда его сняли.
+3) функция обрезаки видео
+4) обрезанное видео  - расшарить результат  в ЛС телеграмма
