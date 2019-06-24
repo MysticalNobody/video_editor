@@ -5,12 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hack_mobile/blocs/videos_bloc.dart';
 import 'package:hack_mobile/screens/edit/index.dart';
-import 'package:hack_mobile/services/database.dart';
 import 'package:hack_mobile/styles.dart';
 import 'package:hack_mobile/widgets/dual_anim_controller.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:sembast/sembast.dart';
 
 class VideosPage extends StatefulWidget {
   @override
